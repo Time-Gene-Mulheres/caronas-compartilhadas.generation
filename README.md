@@ -1,7 +1,7 @@
 
 # 📌 Objetivo
 
-O Caronas é um aplicativo desenvolvido por um grupo de 7 meninas no Bootcamp Generation Brasil, com o objetivo de conectar pessoas que precisam de carona com motoristas que têm assentos disponíveis, implementado utilizando tecnologias modernas para garantir um ambiente funcional e confiável. 
+O Caronas é um aplicativo desenvolvido por um grupo de Mulheres: Alexania Toma, Carolina Almeida, Daniele Rangel, Jessica Rodrigues, Keilla Santos e Sandra Mastrogiacomo  no Bootcamp Generation Brasil, com o objetivo de conectar pessoas que precisam de carona com motoristas que têm assentos disponíveis, implementado utilizando tecnologias modernas para garantir um ambiente funcional e confiável. 
  Tecnologias Utilizadas
 
  # ✅ Ferramentas utilizadas
