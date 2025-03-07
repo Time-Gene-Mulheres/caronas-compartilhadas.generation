@@ -24,7 +24,9 @@ import com.github.repository.MotoristaRepository;
 import jakarta.validation.Valid;
 
 @RestController
+
 @RequestMapping("/motoristas")
+
 @CrossOrigin (allowedHeaders = "*", origins = "*")
 
 public class MotoristaController {
@@ -46,36 +48,35 @@ public class MotoristaController {
 				.map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
-	
-	@GetMapping("/veiculo/{veiculo}")
-	public ResponseEntity<List<Motorista>> getByVeiculo(@PathVariable String veiculo) {
-		return ResponseEntity.ok(motoristaRepository.findAllByVeiculoContainingIgnoreCase(veiculo));
-	}
-
 	//inserir motorista
 	@PostMapping
 	public ResponseEntity<Motorista> post(@Valid @RequestBody Motorista motorista){
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(motoristaRepository.save(motorista));
 	}
-
+	//buscar por veiculo
+	@GetMapping("/veiculo/{veiculo}")
+	public ResponseEntity<List<Motorista>> getByDescricao(@PathVariable String veiculo){
+		return ResponseEntity.ok(motoristaRepository.findAllByVeiculoContainingIgnoreCase(veiculo));
+	}
+	
+	//atualizar motorista
 	@PutMapping
-	public ResponseEntity<Motorista> put(@Valid @RequestBody Motorista motorista) {
+	public ResponseEntity<Motorista> put(@Valid @RequestBody Motorista motorista){
 		return motoristaRepository.findById(motorista.getId())
 				.map(resposta -> ResponseEntity.status(HttpStatus.OK)
-						.body(motoristaRepository.save(motorista)))
-				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+					.body(motoristaRepository.save(motorista)))
+					.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 	
+	//deletar motorista
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable Long id) {
-		Optional<Motorista> motorista = motoristaRepository.findById(id);
+	public void delete (@PathVariable Long id) {
+		Optional<Motorista> tema = motoristaRepository.findById(id);
 		
-		if(motorista.isEmpty()) 
+		if(tema.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-	
 		motoristaRepository.deleteById(id);
-	}
-
+	}	
 }
