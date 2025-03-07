@@ -31,19 +31,22 @@ public class MotoristaController {
 	
 	@Autowired
 	private MotoristaRepository motoristaRepository;
-
+	
+	
+	//buscar todos
 	@GetMapping
 	public ResponseEntity<List<Motorista>> getAll(){
 		return ResponseEntity.ok(motoristaRepository.findAll());
 	}
 	
+	//buscar por id
 	@GetMapping("/{id}")
 	public ResponseEntity<Motorista>getById(@PathVariable Long id) {
 		return motoristaRepository.findById(id)
 				.map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
-	
+	//inserir motorista
 	@PostMapping
 	public ResponseEntity<Motorista> post(@Valid @RequestBody Motorista motorista){
 		return ResponseEntity.status(HttpStatus.CREATED)
@@ -74,4 +77,30 @@ public class MotoristaController {
 		motoristaRepository.deleteById(id);
 	}
 
+	//buscar por veiculo
+	@GetMapping("/veiculo/{veiculo}")
+	public ResponseEntity<List<Motorista>> getByDescricao(@PathVariable String veiculo){
+		return ResponseEntity.ok(motoristaRepository.findAllByVeiculoContainingIgnoreCase(veiculo));
+	}
+	
+	//atualizar motorista
+	@PutMapping
+	public ResponseEntity<Motorista> put(@Valid @RequestBody Motorista motorista){
+		return motoristaRepository.findById(motorista.getId())
+				.map(resposta -> ResponseEntity.status(HttpStatus.OK)
+					.body(motoristaRepository.save(motorista)))
+					.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+	}
+	
+	//deletar motorista
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@DeleteMapping("/{id}")
+	public void delete (@PathVariable Long id) {
+		Optional<Motorista> tema = motoristaRepository.findById(id);
+		
+		if(tema.isEmpty())
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		motoristaRepository.deleteById(id);
+	}
+	
 }
