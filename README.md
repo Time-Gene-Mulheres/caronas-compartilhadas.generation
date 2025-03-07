@@ -5,8 +5,8 @@ O Caronas é um aplicativo desenvolvido por um grupo de 7 meninas no Bootcamp Ge
  Tecnologias Utilizadas
 
  # ✅ Ferramentas utilizadas
-* Spring Boot - Framework para desenvolvimento backend
-* Spring Tool Suite (STS) - IDE para desenvolvimento em Spring
-* MySQL - Banco de dados relacional
-* Insomnia - Ferramenta para testes de API
-* Git e GitHub - Controle de versão e colaboração
+* Spring Boot - Framework para desenvolvimento backend.
+* Spring Tool Suite (STS) - IDE para desenvolvimento em Spring.
+* MySQL - Banco de dados relacional.
+* Insomnia - Ferramenta para testes de API.
+* Git e GitHub - Controle de versão e colaboração.
