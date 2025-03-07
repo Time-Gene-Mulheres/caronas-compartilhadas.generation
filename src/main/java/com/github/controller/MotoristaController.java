@@ -31,24 +31,28 @@ public class MotoristaController {
 	
 	@Autowired
 	private MotoristaRepository motoristaRepository;
-
+	
+	
+	//buscar todos
 	@GetMapping
 	public ResponseEntity<List<Motorista>> getAll(){
 		return ResponseEntity.ok(motoristaRepository.findAll());
 	}
 	
+	//buscar por id
 	@GetMapping("/{id}")
 	public ResponseEntity<Motorista>getById(@PathVariable Long id) {
 		return motoristaRepository.findById(id)
 				.map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
-	
+	//inserir motorista
 	@PostMapping
 	public ResponseEntity<Motorista> post(@Valid @RequestBody Motorista motorista){
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(motoristaRepository.save(motorista));
 	}
+
 	
 	@GetMapping("/veiculo/{veiculo}")
 	public ResponseEntity<List<Motorista>> getByVeiculo(@PathVariable String veiculo) {
@@ -73,5 +77,6 @@ public class MotoristaController {
 	
 		motoristaRepository.deleteById(id);
 	}
+
 
 }
