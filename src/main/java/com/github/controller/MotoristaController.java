@@ -73,9 +73,9 @@ public class MotoristaController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete (@PathVariable Long id) {
-		Optional<Motorista> tema = motoristaRepository.findById(id);
+		Optional<Motorista> Motorista = motoristaRepository.findById(id);
 		
-		if(tema.isEmpty())
+		if(Motorista.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		motoristaRepository.deleteById(id);
 	}
