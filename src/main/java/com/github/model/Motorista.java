@@ -15,7 +15,6 @@ public class Motorista {
 		
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		@NotNull
 		private Long id;
 		
 		@NotBlank(message = "O atributo nome é obrigatorio")
@@ -65,11 +64,5 @@ public class Motorista {
 		public void setVeiculo(String veiculo) {
 			this.veiculo = veiculo;
 		}
-		
-		
-		
-		
-		
-	
 
 }
