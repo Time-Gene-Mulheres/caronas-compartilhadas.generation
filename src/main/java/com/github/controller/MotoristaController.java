@@ -46,6 +46,12 @@ public class MotoristaController {
 				.map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
+	
+	@GetMapping("/veiculo/{veiculo}")
+	public ResponseEntity<List<Motorista>> getByVeiculo(@PathVariable String veiculo) {
+		return ResponseEntity.ok(motoristaRepository.findAllByVeiculoContainingIgnoreCase(veiculo));
+	}
+
 	//inserir motorista
 	@PostMapping
 	public ResponseEntity<Motorista> post(@Valid @RequestBody Motorista motorista){
@@ -53,12 +59,6 @@ public class MotoristaController {
 				.body(motoristaRepository.save(motorista));
 	}
 
-	
-	@GetMapping("/veiculo/{veiculo}")
-	public ResponseEntity<List<Motorista>> getByVeiculo(@PathVariable String veiculo) {
-		return ResponseEntity.ok(motoristaRepository.findAllByVeiculoContainingIgnoreCase(veiculo));
-	}
-	
 	@PutMapping
 	public ResponseEntity<Motorista> put(@Valid @RequestBody Motorista motorista) {
 		return motoristaRepository.findById(motorista.getId())
