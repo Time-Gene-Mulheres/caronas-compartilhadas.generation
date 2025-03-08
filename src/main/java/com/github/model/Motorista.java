@@ -64,5 +64,4 @@ public class Motorista {
 		public void setVeiculo(String veiculo) {
 			this.veiculo = veiculo;
 		}
-
 }

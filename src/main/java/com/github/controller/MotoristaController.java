@@ -78,6 +78,5 @@ public class MotoristaController {
 		if(Motorista.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		motoristaRepository.deleteById(id);
-	}
-	
+	}	
 }
