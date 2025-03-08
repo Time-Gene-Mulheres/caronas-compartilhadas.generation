@@ -56,7 +56,7 @@ public class MotoristaController {
 	}
 	//buscar por veiculo
 	@GetMapping("/veiculo/{veiculo}")
-	public ResponseEntity<List<Motorista>> getByDescricao(@PathVariable String veiculo){
+	public ResponseEntity<List<Motorista>> getByVeiculo(@PathVariable String veiculo){
 		return ResponseEntity.ok(motoristaRepository.findAllByVeiculoContainingIgnoreCase(veiculo));
 	}
 	
@@ -73,9 +73,9 @@ public class MotoristaController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete (@PathVariable Long id) {
-		Optional<Motorista> tema = motoristaRepository.findById(id);
+		Optional<Motorista> motorista = motoristaRepository.findById(id);
 		
-		if(tema.isEmpty())
+		if(motorista.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		motoristaRepository.deleteById(id);
 	}
